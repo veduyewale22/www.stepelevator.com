@@ -1,0 +1,671 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Step Elevator | Elevator Installation & Maintenance</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #17202a;
+        }
+
+        /* NAVBAR */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #0b1220;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #d4af37;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 28px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 7%;
+            background:
+                linear-gradient(rgba(5, 10, 20, 0.78), rgba(5, 10, 20, 0.78)),
+                url("https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1800&q=80");
+
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .hero h1 {
+            font-size: 62px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #d4af37;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.7;
+            color: #e5e7eb;
+            margin-bottom: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-right: 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #d4af37;
+            color: #111;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #111;
+        }
+
+        /* GENERAL */
+        section {
+            padding: 90px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #6b7280;
+            font-size: 17px;
+        }
+
+        /* ABOUT */
+        .about {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #5f6b76;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .about-box {
+            flex: 1;
+            background: #0b1220;
+            color: white;
+            padding: 45px;
+            border-radius: 12px;
+        }
+
+        .about-box h3 {
+            color: #d4af37;
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        /* SERVICES */
+        #services {
+            background: white;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .service {
+            background: #f8fafc;
+            padding: 35px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            transition: 0.3s;
+        }
+
+        .service:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .service-icon {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .service h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .service p {
+            color: #68737d;
+            line-height: 1.7;
+        }
+
+        /* WHY US */
+        .why-us {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .why {
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .why h3 {
+            margin: 15px 0 8px;
+        }
+
+        .why p {
+            color: #68737d;
+            font-size: 14px;
+        }
+
+        /* CTA */
+        .cta {
+            background: #0b1220;
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        /* CONTACT */
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .contact-info h3 {
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contact-item a {
+            color: #17202a;
+            text-decoration: none;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .contact-form textarea {
+            height: 130px;
+            resize: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            background: #d4af37;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #070c16;
+            color: #aeb6c0;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .why-us {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about,
+            .contact {
+                grid-template-columns: 1fr;
+                display: grid;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            section {
+                padding: 60px 6%;
+            }
+
+            .hero {
+                padding: 70px 6%;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .why-us {
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                display: block;
+                text-align: center;
+                margin-bottom: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="logo">STEP <span>ELEVATOR</span></div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Reliable Elevators.<br>
+                <span>Professional Service.</span>
+            </h1>
+
+            <p>
+                Step Elevator provides professional elevator installation
+                and maintenance services designed for safety, reliability
+                and long-term performance.
+            </p>
+
+            <a href="tel:9096832497" class="btn btn-primary">
+                Call 9096832497
+            </a>
+
+            <a href="#services" class="btn btn-outline">
+                Explore Services
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+        <div class="about">
+
+            <div class="about-text">
+
+                <h2>About Step Elevator</h2>
+
+                <p>
+                    Step Elevator is dedicated to providing dependable
+                    elevator solutions for residential and commercial
+                    requirements.
+                </p>
+
+                <p>
+                    From installation to regular maintenance, we focus on
+                    quality workmanship, safety and reliable service.
+                </p>
+
+            </div>
+
+            <div class="about-box">
+
+                <h3>Our Commitment</h3>
+
+                <p>
+                    We aim to provide professional elevator solutions
+                    with a strong focus on safety, quality and customer
+                    satisfaction.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVICES -->
+    <section id="services">
+
+        <div class="section-title">
+
+            <h2>Our Services</h2>
+
+            <p>
+                Complete elevator solutions for your needs
+            </p>
+
+        </div>
+
+
+        <div class="services">
+
+            <div class="service">
+
+                <div class="service-icon">🏗️</div>
+
+                <h3>Elevator Installation</h3>
+
+                <p>
+                    Professional elevator installation solutions
+                    for residential and commercial buildings.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-icon">🔧</div>
+
+                <h3>Elevator Maintenance</h3>
+
+                <p>
+                    Regular maintenance and servicing to help keep
+                    your elevator operating safely and reliably.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-icon">⚙️</div>
+
+                <h3>Repair & Service</h3>
+
+                <p>
+                    Reliable elevator repair and servicing for
+                    maintenance requirements and equipment issues.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHY CHOOSE US -->
+    <section>
+
+        <div class="section-title">
+
+            <h2>Why Choose Step Elevator?</h2>
+
+            <p>Professional service focused on your requirements.</p>
+
+        </div>
+
+
+        <div class="why-us">
+
+            <div class="why">
+                <div style="font-size:40px;">🛡️</div>
+                <h3>Safety Focused</h3>
+                <p>Safety is an important part of our service approach.</p>
+            </div>
+
+            <div class="why">
+                <div style="font-size:40px;">⚙️</div>
+                <h3>Quality Service</h3>
+                <p>Professional solutions for elevator requirements.</p>
+            </div>
+
+            <div class="why">
+                <div style="font-size:40px;">📞</div>
+                <h3>Customer Support</h3>
+                <p>Easy contact for service and maintenance enquiries.</p>
+            </div>
+
+            <div class="why">
+                <div style="font-size:40px;">🏢</div>
+                <h3>Commercial & Residential</h3>
+                <p>Solutions suitable for different building needs.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CALL TO ACTION -->
+    <section class="cta">
+
+        <h2>Need Elevator Installation or Maintenance?</h2>
+
+        <p>
+            Contact Step Elevator to discuss your requirements.
+        </p>
+
+        <a href="tel:9096832497" class="btn btn-primary">
+            Call Now: 9096832497
+        </a>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+        <div class="section-title">
+
+            <h2>Contact Us</h2>
+
+            <p>Get in touch with Step Elevator.</p>
+
+        </div>
+
+
+        <div class="contact">
+
+            <div class="contact-info">
+
+                <h3>Let's Talk</h3>
+
+                <div class="contact-item">
+                    <strong>📞 Phone</strong>
+                    <a href="tel:9096832497">9096832497</a>
+                </div>
+
+                <div class="contact-item">
+                    <strong>🏢 Business</strong>
+                    Step Elevator
+                </div>
+
+                <div class="contact-item">
+                    <strong>🔧 Services</strong>
+                    Elevator Installation & Maintenance
+                </div>
+
+            </div>
+
+
+            <div class="contact-form">
+
+                <h3>Send an Enquiry</h3>
+
+                <br>
+
+                <input type="text" placeholder="Your Name">
+
+                <input type="tel" placeholder="Phone Number">
+
+                <input type="text" placeholder="Service Required">
+
+                <textarea placeholder="Tell us about your requirement"></textarea>
+
+                <button class="submit-btn"
+                    onclick="alert('Thank you! Please call 9096832497 to complete your enquiry.')">
+                    Submit Enquiry
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 <strong>Step Elevator</strong>.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>
+```
